@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Mieruka.Models.MierukaView>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>MierukaViews</h2>
+@using (Html.BeginForm("Index", "MierukaViews", FormMethod.Get))
+{
+    <input type="date" name="Date" value="@string.Format("{0:yyyy-MM-dd}", ViewBag.Date)"  onchange="$('form').submit();"/>
+}
+
+@*<p> 
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<table class="table" id="tblRecords">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Unit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MachineNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Plan)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ActualCount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Unit)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MachineNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Plan)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ActualCount)
+                </td>
+                <td>
+                    @string.Format("{0:dd-MM-yyyy}", item.Date)
+                </td>
+                @*<td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.MachineNumber }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.MachineNumber }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.MachineNumber })
+                </td>*@
+            </tr>
+
+        }
+    </tbody>
+    </table>
